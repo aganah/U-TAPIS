@@ -37,10 +37,8 @@ export default async function (req, res) {
       )
     })
 
-    console.log(req.body)
     const inpValSentence = strip(req.body.string)
-
-    const inpVal = inpValSentence.split(".")
+    const inpVal = inpValSentence.split(".").filter((val) => val)
 
     let index = []
     let sentenceKonjungsiType = []
@@ -101,7 +99,6 @@ export default async function (req, res) {
       })
 
       for (let i = 0; i < stringArr.length; i++) {
-        console.log(wordIsValid)
         if (i === stringArr.length - 1) {
           //cek apabila index kata merupakan kata terakhir di kalimat
           if (index.find((x) => i === x)) {
