@@ -79,7 +79,7 @@ export default async function (req, res) {
           if (res > maxSimiliar) {
             //pencarian nilai cosine similiarity tertinggi
             maxSimiliar = res
-            konjungsiType = "akhiran"
+            konjungsiType = "antara"
           }
         })
 
