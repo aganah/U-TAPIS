@@ -37,8 +37,8 @@ export default async function (req, res) {
       )
     })
 
-    const body = JSON.parse(req.body)
-    const inpValSentence = strip(body.string)
+    console.log(req.body)
+    const inpValSentence = strip(req.body.string)
 
     const inpVal = inpValSentence.split(".")
 
@@ -47,11 +47,11 @@ export default async function (req, res) {
     let wordIsValid = []
 
     let arrKonjungsiType = []
-    let arrKonjungsiValid = []
 
     inpVal.map((sentence) => {
       index = [] //reset index kata konjungsi
       sentenceKonjungsiType = []
+      wordIsValid = []
 
       const stringArr = sentence
         .replace(/[\r\n]/gm, "")
@@ -105,6 +105,8 @@ export default async function (req, res) {
         if (i === stringArr.length - 1) {
           //cek apabila index kata merupakan kata terakhir di kalimat
           if (index.find((x) => i === x)) {
+            wordIsValid.push(false)
+          } else {
             wordIsValid.push(false)
           }
         } else {
