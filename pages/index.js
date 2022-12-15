@@ -87,21 +87,37 @@ const KonjungsiInput = () => {
             }
           })
 
-          sentenceKonjungsiType.push(konjungsiType)
-
           if (maxSimiliar > 0.99) {
             //apabila nilai cosine similiary diatas 0.9 maka index kata tersebut dicatat dan dianggap sebagai kata konjungsi
             index.push(i)
-
-            htmlIteration = htmlIteration.concat(
-              `<div style="color: green"><u>'${string}' ${maxSimiliar.toFixed(
-                4,
-              )}</u> | </div>`,
-            )
+            sentenceKonjungsiType.push(konjungsiType)
+            if (i === stringArr.length - 1) {
+              htmlIteration = htmlIteration.concat(
+                `<div style="color: green"><u>'${string}' ${maxSimiliar.toFixed(
+                  4,
+                )}</u></div> <div style="flex-basis:100%; width:0"></div>`,
+              )
+            } else {
+              htmlIteration = htmlIteration.concat(
+                `<div style="color: green"><u>'${string}' ${maxSimiliar.toFixed(
+                  4,
+                )}</u> | </div>`,
+              )
+            }
           } else {
-            htmlIteration = htmlIteration.concat(
-              `<div>'${string}' ${maxSimiliar.toFixed(4)} | </div>`,
-            )
+            sentenceKonjungsiType.push("")
+
+            if (i === stringArr.length - 1) {
+              htmlIteration = htmlIteration.concat(
+                `<div>'${string}' ${maxSimiliar.toFixed(
+                  4,
+                )}</div> <div style="flex-basis:100%; width:0"></div>`,
+              )
+            } else {
+              htmlIteration = htmlIteration.concat(
+                `<div>'${string}' ${maxSimiliar.toFixed(4)} | </div>`,
+              )
+            }
           }
         })
 
@@ -138,7 +154,6 @@ const KonjungsiInput = () => {
                   )
                 }
               } else {
-                console.log(index)
                 if (sentenceKonjungsiType[i] === "awalan") {
                   falseKonjungsi += 1
                   html = html.concat(
@@ -221,7 +236,7 @@ const KonjungsiInput = () => {
             dangerouslySetInnerHTML={{ __html: htmlDataIteration }}
             style={{
               display: "inline-flex",
-              width: "100vw",
+              width: "1000px",
               flexWrap: "wrap",
               gap: "10px",
             }}
