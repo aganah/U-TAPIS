@@ -87,7 +87,7 @@ const KonjungsiInput = () => {
             }
           })
 
-          if (maxSimiliar > 0.99) {
+          if (maxSimiliar >= 1) {
             //apabila nilai cosine similiary diatas 0.9 maka index kata tersebut dicatat dan dianggap sebagai kata konjungsi
             index.push(i)
             sentenceKonjungsiType.push(konjungsiType)
