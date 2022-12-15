@@ -154,23 +154,16 @@ const KonjungsiInput = () => {
                   )
                 }
               } else {
-                if (index.find((x) => i - 1 === x) !== undefined) {
+                if (sentenceKonjungsiType[i] === "awalan") {
                   falseKonjungsi += 1
                   html = html.concat(
                     `<span style="margin: 0 2px; color: red">${stringArr[i]}</span>`, //salah
                   )
                 } else {
-                  if (sentenceKonjungsiType[i] === "awalan") {
-                    falseKonjungsi += 1
-                    html = html.concat(
-                      `<span style="margin: 0 2px; color: red">${stringArr[i]}</span>`, //salah
-                    )
-                  } else {
-                    trueKonjungsi += 1
-                    html = html.concat(
-                      `<span style="margin: 0 2px; color: green"><u>${stringArr[i]}</u></span>`, //benar
-                    )
-                  }
+                  trueKonjungsi += 1
+                  html = html.concat(
+                    `<span style="margin: 0 2px; color: green"><u>${stringArr[i]}</u></span>`, //benar
+                  )
                 }
               }
             } else {
