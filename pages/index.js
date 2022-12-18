@@ -67,6 +67,8 @@ const KonjungsiInput = () => {
           maxSimiliar = 0 //reset variable maxSimiliar
           const kataInput = string.toLowerCase().split(/(?!$)/)
 
+          console.log(kataInput)
+
           arrKonjungsiAwalanSatuKata.map((arr, i) => {
             const res = calculateCosineSimilarity(arr, kataInput)
 
@@ -80,11 +82,11 @@ const KonjungsiInput = () => {
           arrKonjungsiAntaraSatuKata.map((arr, i) => {
             const res = calculateCosineSimilarity(arr, kataInput)
 
-            if (res.toFixed(4) === maxSimiliar.toFixed(4)) {
+            if (res > maxSimiliar) {
               //pencarian nilai cosine similiarity tertinggi
               maxSimiliar = res
               konjungsiType = "akhiran"
-            } else if (res > maxSimiliar) {
+            } else if (res.toFixed(4) === maxSimiliar.toFixed(4)) {
               konjungsiType = "campuran"
             }
           })
