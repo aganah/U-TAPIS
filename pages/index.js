@@ -67,8 +67,6 @@ const KonjungsiInput = () => {
           maxSimiliar = 0 //reset variable maxSimiliar
           const kataInput = string.toLowerCase().split(/(?!$)/)
 
-          console.log(kataInput)
-
           arrKonjungsiAwalanSatuKata.map((arr, i) => {
             const res = calculateCosineSimilarity(arr, kataInput)
 
