@@ -57,7 +57,7 @@ const KonjungsiInput = () => {
 
         const stringArr = sentence
           .replace(/[\r\n]/gm, "")
-          .split(" ")
+          .split(/[\W\s]+/)
           .filter((string) => string !== "") //tokenisasi kata
 
         let maxSimiliar //deklarasi variable sebagai penampung nilai cosine similiarity tertinggi
@@ -80,14 +80,16 @@ const KonjungsiInput = () => {
           arrKonjungsiAntaraSatuKata.map((arr, i) => {
             const res = calculateCosineSimilarity(arr, kataInput)
 
-            if (res > maxSimiliar) {
+            if (res.toFixed(4) === maxSimiliar.toFixed(4)) {
               //pencarian nilai cosine similiarity tertinggi
               maxSimiliar = res
               konjungsiType = "akhiran"
+            } else if (res > maxSimiliar) {
+              konjungsiType = "campuran"
             }
           })
 
-          if (maxSimiliar >= 1) {
+          if (maxSimiliar.toFixed(4) >= 1.0) {
             //apabila nilai cosine similiary diatas 0.9 maka index kata tersebut dicatat dan dianggap sebagai kata konjungsi
             index.push(i)
             sentenceKonjungsiType.push(konjungsiType)
@@ -142,7 +144,10 @@ const KonjungsiInput = () => {
               //cek apabila index kata terdapat pada index kata konjungsi
               if (i === 0) {
                 //cek apabila kata konjungsi terletak di depan
-                if (sentenceKonjungsiType[i] === "awalan") {
+                if (
+                  sentenceKonjungsiType[i] === "awalan" ||
+                  sentenceKonjungsiType[i] === "campuran"
+                ) {
                   trueKonjungsi += 1
                   html = html.concat(
                     `<span style="margin: 0 2px; color: green"><u>${stringArr[i]}</u></span>`, //benar
