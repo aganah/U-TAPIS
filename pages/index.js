@@ -97,7 +97,7 @@ const KonjungsiInput = () => {
               htmlIteration = htmlIteration.concat(
                 `<div style="color: green"><u>'${string}' ${maxSimiliar.toFixed(
                   4,
-                )}</u></div> <div style="flex-basis:100%; width:0"></div>`,
+                )}</u></div> <div style="flex-basis:100%; width:0">--------------------------------------</div>`,
               )
             } else {
               htmlIteration = htmlIteration.concat(
@@ -113,7 +113,7 @@ const KonjungsiInput = () => {
               htmlIteration = htmlIteration.concat(
                 `<div>'${string}' ${maxSimiliar.toFixed(
                   4,
-                )}</div> <div style="flex-basis:100%; width:0"></div>`,
+                )}</div> <div style="flex-basis:100%; width:0">--------------------------------------</div>`,
               )
             } else {
               htmlIteration = htmlIteration.concat(
@@ -159,15 +159,22 @@ const KonjungsiInput = () => {
                   )
                 }
               } else {
-                if (sentenceKonjungsiType[i] === "awalan") {
+                if (index.find((x) => i - 1 === x) === undefined) {
+                  if (sentenceKonjungsiType[i] === "awalan") {
+                    falseKonjungsi += 1
+                    html = html.concat(
+                      `<span style="margin: 0 2px; color: red">${stringArr[i]}</span>`, //salah
+                    )
+                  } else {
+                    trueKonjungsi += 1
+                    html = html.concat(
+                      `<span style="margin: 0 2px; color: green"><u>${stringArr[i]}</u></span>`, //benar
+                    )
+                  }
+                } else {
                   falseKonjungsi += 1
                   html = html.concat(
                     `<span style="margin: 0 2px; color: red">${stringArr[i]}</span>`, //salah
-                  )
-                } else {
-                  trueKonjungsi += 1
-                  html = html.concat(
-                    `<span style="margin: 0 2px; color: green"><u>${stringArr[i]}</u></span>`, //benar
                   )
                 }
               }
@@ -223,6 +230,7 @@ const KonjungsiInput = () => {
           dangerouslySetInnerHTML={{ __html: htmlData }}
           style={{
             display: "flex",
+            width: "850px",
             flexWrap: "wrap",
           }}
         />
